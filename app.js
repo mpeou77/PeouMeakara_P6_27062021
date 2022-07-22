@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
 
-//const stuffRoutes = require('./routes/stuff');
+const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 mongoose.connect('mongodb+srv://mpeou08:Meakara1977@cluster0.vdkcm.mongodb.net/?retryWrites=true&w=majority',
@@ -23,8 +23,7 @@ app.use((req, res, next) => {
   });
 
 app.use(bodyParser.json());
-
-//app.use('/api/stuff', stuffRoutes);
+app.use('/api/sauces', sauceRoutes);
 app.use('/api', userRoutes);
 
 
