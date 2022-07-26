@@ -18,7 +18,7 @@ exports.signup = (req, res, next) => {
 
 exports.login = (req, res, next) => {
     User.findOne({email: req.body.email})
-    .then(user =>{
+    .then(user => {
         if (user === null) {
         res.status(401).json({message: 'Paire identifiant/mot de passe incorrecte'});
     } else {
@@ -28,7 +28,7 @@ exports.login = (req, res, next) => {
                 res.status(401).json({message: 'Paire identifiant/mot de passe incorrecte'});
             } else {
                 res.status(200).json({
-                    userID: user._id,
+                    userId: user._id,
                     token: jwt.sign(
                         { userId: user._id },
                         'RANDOM_TOKEN_SECRET',
@@ -37,9 +37,9 @@ exports.login = (req, res, next) => {
                 });
             }
         })
-        .catch(error => res.status(500).json({ error}));
+        .catch(error => res.status(500).json({error}));
         }
     })
-    .catch(error => res.status(500).json ({ error}));
+    .catch(error => res.status(500).json ({error}));
 
 };
